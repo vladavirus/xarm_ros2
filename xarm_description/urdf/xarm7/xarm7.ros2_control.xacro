@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="xarm7_ros2_control" params="prefix
+  <xacro:macro name="xarm7_ros2_control"
+    params="prefix
     velocity_control:='false'
     ros2_control_plugin:='uf_robot_hardware/UFRobotSystemHardware'
     hw_ns:='xarm' add_gripper:='false' add_bio_gripper:='false'
@@ -28,6 +29,11 @@
           <param name="add_gripper">${add_gripper}</param>
           <param name="add_bio_gripper">${add_bio_gripper}</param>
         </xacro:if>
+        <xacro:if value="${ros2_control_plugin == 'mujoco_ros2_simulation/MujocoSystemInterface'}">
+          <!-- Add MuJoCo specific parameters here if needed -->
+          <param name="mujoco_model">$(find mujoco_ros2_simulation)/resources/scene_xarm7.xml</param>
+          <param name="headless">false</param>
+        </xacro:if>
       </hardware>
       <joint name="${prefix}joint1">
         <command_interface name="position">
@@ -38,8 +44,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
       <joint name="${prefix}joint2">
@@ -51,8 +57,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
       <joint name="${prefix}joint3">
@@ -64,8 +70,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
       <joint name="${prefix}joint4">
@@ -77,8 +83,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
       <joint name="${prefix}joint5">
@@ -90,8 +96,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
       <joint name="${prefix}joint6">
@@ -103,8 +109,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
       <joint name="${prefix}joint7">
@@ -116,8 +122,8 @@
           <param name="min">-3.14</param>
           <param name="max">3.14</param>
         </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
         <!-- <state_interface name="effort"/> -->
       </joint>
     </ros2_control>
