@@ -69,7 +69,7 @@ def launch_setup(context, *args, **kwargs):
     ros_namespace = LaunchConfiguration(
         'ros_namespace', default='').perform(context)
 
-    ros2_control_plugin = 'mujoco_ros2_simulation/MujocoSystemInterface'
+    ros2_control_plugin = 'mujoco_ros2_control/MujocoSystemInterface'
     controllers_name = 'fake_controllers'
 
     ros2_control_params = generate_ros2_control_params_temp_file(
@@ -142,10 +142,11 @@ def launch_setup(context, *args, **kwargs):
     )
 
     # robot mujoco launch
-    # mujoco_ros2_simulation/launch/_robot_mujoco.launch.py
+    # mujoco_ros2_control_xarm/launch/_robot_mujoco.launch.py
+
     robot_mujoco_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution([FindPackageShare(
-            'mujoco_ros2_simulation'), 'launch', '_robot_mujoco.launch.py'])),
+            'mujoco_ros2_control_xarm'), 'launch', '_robot_mujoco.launch.py'])),
         launch_arguments={
             'dof': dof,
             'robot_type': robot_type,
